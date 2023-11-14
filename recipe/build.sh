@@ -18,12 +18,14 @@ for i in `ls`; do
         # Headers and libraries are installed to targetsDir
         mkdir -p ${PREFIX}/${targetsDir}
         mkdir -p ${PREFIX}/$i
-        cp -rv $i ${PREFIX}/${targetsDir}
         if [[ $i == "lib" ]]; then
+            cp -rv $i ${PREFIX}/
             for j in "$i"/*.so*; do
                 # Shared libraries are symlinked in $PREFIX/lib
-                ln -s ${PREFIX}/${targetsDir}/$j ${PREFIX}/$j
+                ln -s ${PREFIX}/$j ${PREFIX}/${targetsDir}/$j
             done
+        else
+            cp -rv $i ${PREFIX}/${targetsDir}
         fi
     else
         # Put all other files in targetsDir

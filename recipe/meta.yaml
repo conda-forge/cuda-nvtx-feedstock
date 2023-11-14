@@ -24,7 +24,7 @@ source:
   sha256: e16c1214fb7ae1bb60a9224e07b70aa5fd03310226140672ab3b409ddf4ae2a7  # [win]
 
 build:
-  number: 0
+  number: 1
   skip: true  # [osx]
 
 test:
