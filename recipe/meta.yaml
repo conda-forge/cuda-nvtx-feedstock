@@ -28,11 +28,15 @@ build:
   skip: true  # [osx]
 
 test:
+  requires:
+    # For readelf
+    - binutils
   commands:
     - test -L $PREFIX/lib/libnvToolsExt.so.1                                # [linux]
-    - test -L $PREFIX/lib/libnvToolsExt.so.1.0.0                            # [linux]
+    - test -f $PREFIX/lib/libnvToolsExt.so.1.0.0                            # [linux]
     - test -L $PREFIX/targets/{{ target_name }}/lib/libnvToolsExt.so.1      # [linux]
-    - test -f $PREFIX/targets/{{ target_name }}/lib/libnvToolsExt.so.1.0.0  # [linux]
+    - test -L $PREFIX/targets/{{ target_name }}/lib/libnvToolsExt.so.1.0.0  # [linux]
+    - if `readelf -d /home/isuru/miniforge3/envs/nvtx/lib/libnvToolsExt.so.1 | grep -q '$ORIGIN/\.\.'`; then echo 1; fi
 
 outputs:
   - name: cuda-nvtx
