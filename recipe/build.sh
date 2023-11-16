@@ -20,6 +20,7 @@ for i in `ls`; do
         mkdir -p ${PREFIX}/$i
         if [[ $i == "lib" ]]; then
             cp -rv $i ${PREFIX}/
+            mkdir -p ${PREFIX}/${targetsDir}/lib
             for j in "$i"/*.so*; do
                 # Shared libraries are symlinked in $PREFIX/lib
                 ln -s ${PREFIX}/$j ${PREFIX}/${targetsDir}/$j
