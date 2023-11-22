@@ -26,13 +26,19 @@ source:
 build:
   number: 0
   skip: true  # [osx]
+  binary_relocation: false
+  missing_dso_whitelist:
+  - '*'
 
 test:
+  requires:
+    - patchelf
   commands:
     - test -L $PREFIX/lib/libnvToolsExt.so.1                                # [linux]
     - test -L $PREFIX/lib/libnvToolsExt.so.1.0.0                            # [linux]
     - test -L $PREFIX/targets/{{ target_name }}/lib/libnvToolsExt.so.1      # [linux]
     - test -f $PREFIX/targets/{{ target_name }}/lib/libnvToolsExt.so.1.0.0  # [linux]
+    - patchelf --print-rpath $PREFIX/targets/{{ target_name }}/lib/libnvToolsExt.so.1.0.0
 
 outputs:
   - name: cuda-nvtx
@@ -46,6 +52,7 @@ outputs:
         - {{ compiler("c") }}
         - {{ compiler("cxx") }}
         - arm-variant * {{ arm_variant_type }}  # [aarch64]
+        - patchelf
       host:
         - cuda-version {{ cuda_version }}
       run:
