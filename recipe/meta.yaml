@@ -24,7 +24,7 @@ source:
   sha256: e16c1214fb7ae1bb60a9224e07b70aa5fd03310226140672ab3b409ddf4ae2a7  # [win]
 
 build:
-  number: 0
+  number: 1
   skip: true  # [osx]
   binary_relocation: false
   missing_dso_whitelist:
@@ -32,13 +32,13 @@ build:
 
 test:
   requires:
-    - patchelf
+    - patchelf  # [linux]
   commands:
     - test -L $PREFIX/lib/libnvToolsExt.so.1                                # [linux]
     - test -L $PREFIX/lib/libnvToolsExt.so.1.0.0                            # [linux]
     - test -L $PREFIX/targets/{{ target_name }}/lib/libnvToolsExt.so.1      # [linux]
     - test -f $PREFIX/targets/{{ target_name }}/lib/libnvToolsExt.so.1.0.0  # [linux]
-    - patchelf --print-rpath $PREFIX/targets/{{ target_name }}/lib/libnvToolsExt.so.1.0.0
+    - patchelf --print-rpath $PREFIX/targets/{{ target_name }}/lib/libnvToolsExt.so.1.0.0  # [linux]
 
 outputs:
   - name: cuda-nvtx
@@ -52,7 +52,7 @@ outputs:
         - {{ compiler("c") }}
         - {{ compiler("cxx") }}
         - arm-variant * {{ arm_variant_type }}  # [aarch64]
-        - patchelf
+        - patchelf  # [linux]
       host:
         - cuda-version {{ cuda_version }}
       run:
