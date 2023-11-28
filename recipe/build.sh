@@ -25,7 +25,7 @@ for i in `ls`; do
                 ln -s ${PREFIX}/${targetsDir}/$j ${PREFIX}/$j
 
                 # Set RPATH to $ORIGIN
-                patchelf --set-rpath '$ORIGIN/../lib' --force-rpath ${PREFIX}/${targetsDir}/$j
+                patchelf --set-rpath '$ORIGIN' --force-rpath ${PREFIX}/${targetsDir}/$j
             done
         fi
     else
