@@ -27,8 +27,6 @@ build:
   number: 1
   skip: true  # [osx]
   binary_relocation: false
-  missing_dso_whitelist:
-  - '*'
 
 test:
   requires:
