@@ -31,12 +31,14 @@ build:
 test:
   requires:
     - patchelf  # [linux]
+  files:
+    - test-rpath.sh
   commands:
     - test -L $PREFIX/lib/libnvToolsExt.so.1                                # [linux]
     - test -L $PREFIX/lib/libnvToolsExt.so.1.0.0                            # [linux]
     - test -L $PREFIX/targets/{{ target_name }}/lib/libnvToolsExt.so.1      # [linux]
     - test -f $PREFIX/targets/{{ target_name }}/lib/libnvToolsExt.so.1.0.0  # [linux]
-    - patchelf --print-rpath $PREFIX/targets/{{ target_name }}/lib/libnvToolsExt.so.1.0.0  # [linux]
+    - bash test-rpath.sh
 
 outputs:
   - name: cuda-nvtx
