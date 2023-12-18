@@ -1,6 +1,6 @@
 {% set name = "cuda-nvtx" %}
-{% set version = "12.1.105" %}
-{% set cuda_version = "12.1" %}
+{% set version = "12.2.140" %}
+{% set cuda_version = "12.2" %}
 {% set platform = "linux-x86_64" %}  # [linux64]
 {% set platform = "linux-ppc64le" %}  # [ppc64le]
 {% set platform = "linux-sbsa" %}  # [aarch64]
@@ -18,10 +18,10 @@ package:
 
 source:
   url: https://developer.download.nvidia.com/compute/cuda/redist/cuda_nvtx/{{ platform }}/cuda_nvtx-{{ platform }}-{{ version }}-archive.{{ extension }}
-  sha256: 8ca2c72c247bf10ca10653637c60e792a1249cbeecc1d817c4815d98b45cf1c2  # [linux64]
-  sha256: 61a8522850e0b07f650d72fd9bf5182e06e348f660ef37a7b8fcdf862ea215dc  # [ppc64le]
-  sha256: cde9802f1c2cc817c6e1d2f516212c4847621b80a204ad7d84fd11b39c386741  # [aarch64]
-  sha256: 862f9289b193d5d229ebb1a8417eb988a2f318837b35f887e93f74940f7abd1e  # [win]
+  sha256: 2651bfb5c15fc546556da2d6b1dc48c97e1ee6f8c38d3f1910df56f24d5d028e  # [linux64]
+  sha256: 5e41c750f1677801848765b0db6ac1672b2ea29cc2f5c0ef914d84e52e2a4989  # [ppc64le]
+  sha256: b94ecd3824a7ecaf95b3d74b8972a29aae5ab98af349333f9c737f106d10b16a  # [aarch64]
+  sha256: 6e68b436760aa05a5190d04c104a2c4f2f47073b099c6c25cb989a769c69f77a  # [win]
 
 build:
   number: 0
