@@ -51,7 +51,7 @@ outputs:
       build:
         - {{ compiler("c") }}
         - {{ compiler("cxx") }}
-        - {{ stdlib("c") }}
+        - {{ stdlib("c") }}  # [linux]
         - arm-variant * {{ arm_variant_type }}  # [aarch64]
         - patchelf <0.18.0  # [linux]
       host:
