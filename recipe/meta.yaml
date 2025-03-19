@@ -23,7 +23,7 @@ source:
   sha256: 38dbd5941537fcb359137f26fe31b4e3528c504cc2a55fa10a9baaf0ff006187  # [win]
 
 build:
-  number: 0
+  number: 1
   skip: true  # [osx or ppc64le]
   binary_relocation: false
 
@@ -42,7 +42,7 @@ test:
 outputs:
   - name: cuda-nvtx
     build:
-        skip: true  # [not linux]
+      skip: true  # [not linux]
     files:
       - lib/libnv*.so.*                       # [linux]
       - targets/{{ target_name }}/lib/*.so.*  # [linux]
@@ -74,7 +74,7 @@ outputs:
 
   - name: cuda-nvtx-dev
     build:
-      run_exports:                                        # [linux]
+      run_exports:   # [linux]
         - {{ pin_subpackage("cuda-nvtx", max_pin='x') }}  # [linux]
     files:
       - lib/libnv*.so                                    # [linux]
