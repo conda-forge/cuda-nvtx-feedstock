@@ -13,7 +13,7 @@
 {% set extension = "zip" %}  # [win]
 
 package:
-  name: {{ name|lower }}
+  name: {{ name|lower }}-split
   version: {{ version }}
 
 source:
@@ -27,17 +27,9 @@ build:
   skip: true  # [osx or ppc64le]
   binary_relocation: false
 
-test:
-  requires:
-    - patchelf  # [linux]
-  files:
-    - test-rpath.sh
-  commands:
-    - test -L $PREFIX/lib/libnvToolsExt.so.1                                # [linux]
-    - test -L $PREFIX/lib/libnvToolsExt.so.1.0.0                            # [linux]
-    - test -L $PREFIX/targets/{{ target_name }}/lib/libnvToolsExt.so.1      # [linux]
-    - test -f $PREFIX/targets/{{ target_name }}/lib/libnvToolsExt.so.1.0.0  # [linux]
-    - bash test-rpath.sh                                                    # [linux]
+requirements:
+  build:
+    - cf-nvidia-tools 1.*  # [linux]
 
 outputs:
   - name: cuda-nvtx
@@ -59,7 +51,17 @@ outputs:
         - {{ pin_compatible("cuda-version", max_pin="x.x") }}
       run_constrained:
         - arm-variant * {{ arm_variant_type }}  # [aarch64]
-    # Tests are defined at the top level, due to package/output name conflicts.
+    test:
+      requires:
+        - patchelf  # [linux]
+      files:
+        - test-rpath.sh
+      commands:
+        - test -L $PREFIX/lib/libnvToolsExt.so.1                                # [linux]
+        - test -L $PREFIX/lib/libnvToolsExt.so.1.0.0                            # [linux]
+        - test -L $PREFIX/targets/{{ target_name }}/lib/libnvToolsExt.so.1      # [linux]
+        - test -f $PREFIX/targets/{{ target_name }}/lib/libnvToolsExt.so.1.0.0  # [linux]
+        - bash test-rpath.sh                                                    # [linux]
     about:
       home: https://developer.nvidia.com/cuda-toolkit
       license_file: LICENSE
@@ -126,5 +128,6 @@ about:
   doc_url: https://docs.nvidia.com/nvtx/
 
 extra:
+  feedstock-name: cuda-nvtx
   recipe-maintainers:
     - conda-forge/cuda
