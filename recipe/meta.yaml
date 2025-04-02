@@ -25,15 +25,16 @@ source:
 build:
   number: 1
   skip: true  # [osx or ppc64le]
-  binary_relocation: false
 
 requirements:
   build:
     - cf-nvidia-tools 1.*  # [linux]
+    - patchelf <0.18.0  # [linux]
 
 outputs:
   - name: cuda-nvtx
     build:
+      binary_relocation: false
       skip: true  # [not linux]
     files:
       - lib/libnv*.so.*                       # [linux]
