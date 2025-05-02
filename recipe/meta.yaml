@@ -82,7 +82,6 @@ outputs:
     files:
       - lib/libnv*.so                                    # [linux]
       - targets/{{ target_name }}/lib/*.so               # [linux]
-      - targets/{{ target_name }}/include/nvToolsExt*.h  # [linux]
       - targets/{{ target_name }}/include/nvtx3          # [linux]
       - Library\include\targets\{{ target_name }}        # [win]
     requirements:
@@ -98,7 +97,6 @@ outputs:
     test:
       commands:
         - test -L $PREFIX/lib/libnvtx3interop.so                                                      # [linux]
-        - test -f $PREFIX/targets/{{ target_name }}/include/nvToolsExtCuda.h                          # [linux]
         - test -f $PREFIX/targets/{{ target_name }}/include/nvtx3/nvToolsExtCuda.h                    # [linux]
         - test -L $PREFIX/targets/{{ target_name }}/lib/libnvtx3interop.so                            # [linux]
         - if not exist %LIBRARY_INC%\targets\{{ target_name }}\nvtx3\nvToolsExt.h exit 1  # [win]
