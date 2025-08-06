@@ -1,6 +1,6 @@
 {% set name = "cuda-nvtx" %}
-{% set version = "12.9.79" %}
-{% set cuda_version = "12.9" %}
+{% set version = "13.0.39" %}
+{% set cuda_version = "13.0" %}
 {% set platform = "linux-x86_64" %}  # [linux64]
 {% set platform = "linux-ppc64le" %}  # [ppc64le]
 {% set platform = "linux-sbsa" %}  # [aarch64]
@@ -18,9 +18,9 @@ package:
 
 source:
   url: https://developer.download.nvidia.com/compute/cuda/redist/cuda_nvtx/{{ platform }}/cuda_nvtx-{{ platform }}-{{ version }}-archive.{{ extension }}
-  sha256: 819bc39192955e6ba2067de39b85f30e157de462945e54b12bfdeda429d793fb  # [linux64]
-  sha256: dae359c2c51f83a5cd402468f481a82aeb6d32d79dc707d3625607e83cf97ceb  # [aarch64]
-  sha256: b9d506ce9ba056bf171b60e9dada06fb3d8bed5453a6399d0541960bf9b81659  # [win]
+  sha256: a23847a3e82314df7ceb665d2995e6c99d57975d0ab9fe4d523f82e1069b1763  # [linux64]
+  sha256: 233bebe21bca59a3268676efa95784d83ea8a2af9d817b3c89f0ce165aa1cccd  # [aarch64]
+  sha256: e69b1fc82d19baddc20ab45be8d84efe2c83ac96d385b8f55c306f4a1baf46f0  # [win]
 
 build:
   number: 0
@@ -59,9 +59,9 @@ outputs:
         - test-rpath.sh
       commands:
         - test -L $PREFIX/lib/libnvtx3interop.so.1                                # [linux]
-        - test -L $PREFIX/lib/libnvtx3interop.so.1.0.0                            # [linux]
+        - test -L $PREFIX/lib/libnvtx3interop.so.1.1.0                            # [linux]
         - test -L $PREFIX/targets/{{ target_name }}/lib/libnvtx3interop.so.1      # [linux]
-        - test -f $PREFIX/targets/{{ target_name }}/lib/libnvtx3interop.so.1.0.0  # [linux]
+        - test -f $PREFIX/targets/{{ target_name }}/lib/libnvtx3interop.so.1.1.0  # [linux]
         - bash test-rpath.sh                                                      # [linux]
     about:
       home: https://developer.nvidia.com/cuda-toolkit
