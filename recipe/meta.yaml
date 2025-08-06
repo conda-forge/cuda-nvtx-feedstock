@@ -59,9 +59,9 @@ outputs:
         - test-rpath.sh
       commands:
         - test -L $PREFIX/lib/libnvtx3interop.so.1                                # [linux]
-        - test -L $PREFIX/lib/libnvtx3interop.so.1.0.0                            # [linux]
+        - test -L $PREFIX/lib/libnvtx3interop.so.1.1.0                            # [linux]
         - test -L $PREFIX/targets/{{ target_name }}/lib/libnvtx3interop.so.1      # [linux]
-        - test -f $PREFIX/targets/{{ target_name }}/lib/libnvtx3interop.so.1.0.0  # [linux]
+        - test -f $PREFIX/targets/{{ target_name }}/lib/libnvtx3interop.so.1.1.0  # [linux]
         - bash test-rpath.sh                                                      # [linux]
     about:
       home: https://developer.nvidia.com/cuda-toolkit
