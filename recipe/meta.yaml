@@ -13,6 +13,10 @@
 {% set target_name = "arm64" %}  # [win and arm64]
 {% set extension = "tar.xz" %}  # [not win]
 {% set extension = "zip" %}  # [win]
+{% set sha256 = "66569def5423d3a9fd5b48ddd7621c345d26d2a2fe162b27162e8df4b4f036ec" %}  # [linux64]
+{% set sha256 = "f837ae94e9a24de805b45610340c3dbaf2058c874a2e201dd8b63712d32944c4" %}  # [aarch64]
+{% set sha256 = "01a6f60403d79459f0b1ba00e3038e1ebdeaa0c8144751b9eb6245ab36c994c1" %}  # [win64]
+{% set sha256 = "04e8d04a2656bc8ea14f3dec55a0173f0cd094f535bdcd8b4032d270afdd1625" %}  # [win and arm64]
 
 package:
   name: {{ name|lower }}-split
@@ -20,10 +24,7 @@ package:
 
 source:
   url: https://developer.download.nvidia.com/compute/cuda/redist/cuda_nvtx/{{ platform }}/cuda_nvtx-{{ platform }}-{{ version }}-archive.{{ extension }}
-  sha256: 66569def5423d3a9fd5b48ddd7621c345d26d2a2fe162b27162e8df4b4f036ec  # [linux64]
-  sha256: f837ae94e9a24de805b45610340c3dbaf2058c874a2e201dd8b63712d32944c4  # [aarch64]
-  sha256: 01a6f60403d79459f0b1ba00e3038e1ebdeaa0c8144751b9eb6245ab36c994c1  # [win64]
-  sha256: 04e8d04a2656bc8ea14f3dec55a0173f0cd094f535bdcd8b4032d270afdd1625  # [win and arm64]
+  sha256: {{ sha256 }}
 
 build:
   number: 0
