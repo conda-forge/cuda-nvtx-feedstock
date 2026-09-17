@@ -1,5 +1,5 @@
 {% set name = "cuda-nvtx" %}
-{% set version = "13.4.49" %}
+{% set version = "13.4.92" %}
 {% set cuda_version = "13.4" %}
 {% set platform = "linux-x86_64" %}  # [linux64]
 {% set platform = "linux-ppc64le" %}  # [ppc64le]
@@ -13,10 +13,10 @@
 {% set target_name = "arm64" %}  # [win and arm64]
 {% set extension = "tar.xz" %}  # [not win]
 {% set extension = "zip" %}  # [win]
-{% set sha256 = "66569def5423d3a9fd5b48ddd7621c345d26d2a2fe162b27162e8df4b4f036ec" %}  # [linux64]
-{% set sha256 = "f837ae94e9a24de805b45610340c3dbaf2058c874a2e201dd8b63712d32944c4" %}  # [aarch64]
-{% set sha256 = "01a6f60403d79459f0b1ba00e3038e1ebdeaa0c8144751b9eb6245ab36c994c1" %}  # [win64]
-{% set sha256 = "04e8d04a2656bc8ea14f3dec55a0173f0cd094f535bdcd8b4032d270afdd1625" %}  # [win and arm64]
+{% set sha256 = "d767ac8b8bb40f5d58602ce900e8bf2fe073c1ebb4a7d405ff67674009fa83ce" %}  # [linux64]
+{% set sha256 = "e30e800bdd96d389284fb036a58c9c21a32a5c7060d98db457efded46e43e0ab" %}  # [aarch64]
+{% set sha256 = "a3bd5041778b63a95e63009c044e93b4d569b7dca5693d6b12884e04d1d39d06" %}  # [win64]
+{% set sha256 = "2c323f30441f3235862cd13374041010fc44fafa20bb223922c3317ca5006b49" %}  # [win and arm64]
 
 package:
   name: {{ name|lower }}-split
@@ -27,7 +27,7 @@ source:
   sha256: {{ sha256 }}
 
 build:
-  number: 1
+  number: 0
   skip: true  # [osx or ppc64le]
 
 requirements:
