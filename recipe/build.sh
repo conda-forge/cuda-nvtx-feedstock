@@ -3,8 +3,6 @@
 # Install to conda style directories
 [[ -d lib64 ]] && mv lib64 lib
 mkdir -p ${PREFIX}/lib
-[[ -d pkg-config ]] && mkdir -p ${PREFIX}/lib && mv pkg-config ${PREFIX}/lib/pkgconfig
-[[ -d "$PREFIX/lib/pkgconfig" ]] && sed -E -i "s|cudaroot=.+|cudaroot=$PREFIX|g" $PREFIX/lib/pkgconfig/nvToolsExt*.pc
 
 [[ ${target_platform} == "linux-64" ]] && targetsDir="targets/x86_64-linux"
 [[ ${target_platform} == "linux-ppc64le" ]] && targetsDir="targets/ppc64le-linux"
